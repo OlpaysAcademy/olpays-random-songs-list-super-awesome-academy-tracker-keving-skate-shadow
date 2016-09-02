@@ -1,0 +1,9 @@
+.Playlist {
+    margin: 1rem;
+}
+
+.Playlist-music {
+    animation: App-logo-spin infinite 20s linear;
+    height: 20px;
+    margin-right: 5px;
+}

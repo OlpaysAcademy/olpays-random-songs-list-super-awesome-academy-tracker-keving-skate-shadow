@@ -1,0 +1,10 @@
+.Input {
+    border: 1px solid black;
+    display: inline-block;
+    color: black;
+    font-family: Arial;
+    font-size: 1rem;
+    padding: .4rem .6rem;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #03a9f4;
+}

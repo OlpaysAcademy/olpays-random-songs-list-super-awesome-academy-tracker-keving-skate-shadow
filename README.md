@@ -5,7 +5,7 @@ This repository is only for educational purpose, is not intended to work in any 
 ```
 
 This exercise consist on an application that can:
-* Create playlists
+* Create playlists ✓
 * Add songs to the each playlist
 * Count the times the playlist has been heard
 * Choose a random playlist

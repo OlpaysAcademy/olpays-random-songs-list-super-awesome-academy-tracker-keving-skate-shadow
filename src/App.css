@@ -1,0 +1,44 @@
+/*
+    CSS naming is based on kind of a BEM style convention
+    http://getbem.com/introduction/
+*/
+.App {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.App-logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 60px;
+}
+
+.App-header {
+    flex: 1;
+    width: 100%;
+    background-color: #222;
+    padding: 20px;
+    color: white;
+}
+
+.App-body {
+    flex: 9;
+    width: 100%;
+    max-width: 640px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+@keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+}
