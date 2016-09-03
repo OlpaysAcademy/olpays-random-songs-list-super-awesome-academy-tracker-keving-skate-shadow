@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FlipMove from 'react-flip-move';
 import shuffle from 'lodash/shuffle';
+import classNames from 'classnames';
 
 import Playlist from './Playlist';
 
@@ -16,6 +17,11 @@ class Playlists extends Component {
     addPlaylist(title) {
         this.setState({
             playlists: addPlaylist(this.state.playlists, title)
+        });
+    }
+    setMinimumTimesPlayed(timesPlayed) {
+        this.setState({
+            playlists: showGreaterThanMinimumTimesPlayed(this.state.playlists, timesPlayed)
         });
     }
     chooseRandomPlaylist() {
@@ -38,9 +44,12 @@ class Playlists extends Component {
             <div className="Playlists">
                 <FlipMove enterAnimation="accordianVertical">
                     {
-                        this.state.playlists.map(playlist =>
-                            <Playlist playlist={playlist} onHear={() => this.increaseTimesPlayed(playlist.id) } key={playlist.id} />
-                        )
+                        this.state.playlists.map(playlist => {
+                            const className = classNames({
+                                'Playlists-playlist-hidden': !playlist.isVisible
+                            });
+                            return <Playlist className={className} playlist={playlist} onHear={() => this.increaseTimesPlayed(playlist.id) } key={playlist.id} />
+                        })
                     }
                 </FlipMove>
             </div>
@@ -60,8 +69,16 @@ function createPlaylist(title) {
     return {
         title,
         id: Math.random(),
-        timesPlayed: 0
+        timesPlayed: 0,
+        isVisible: true
     };
+}
+
+function showGreaterThanMinimumTimesPlayed(playlists, timesPlayed) {
+    return playlists.map(playlist => {
+        playlist.isVisible = playlist.timesPlayed >= timesPlayed;
+        return playlist;
+    });
 }
 
 function increaseTimesPlayed(playlists, id) {

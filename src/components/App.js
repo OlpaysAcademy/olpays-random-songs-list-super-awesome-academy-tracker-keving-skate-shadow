@@ -31,8 +31,15 @@ class App extends Component {
                 </div>
                 <div className="App-body">
                     <PlaylistForm onSubmit={title => this.refs.Playlists.addPlaylist(title) } />
-                    <RandomChooser isDisabled={this.state.arePlaylistsEmpty} onSubmit={() => this.refs.Playlists.chooseRandomPlaylist() } />
-                    <Playlists ref="Playlists" onPlaylistsChanged={playlistsLength => this.updatePlaylistEmptiness(playlistsLength)} />
+                    <RandomChooser
+                        isDisabled={this.state.arePlaylistsEmpty}
+                        onFilter={timesPlayed => this.refs.Playlists.setMinimumTimesPlayed(timesPlayed) }
+                        onSubmit={() => this.refs.Playlists.chooseRandomPlaylist() }
+                        />
+                    <Playlists
+                        ref="Playlists"
+                        onPlaylistsChanged={playlistsLength => this.updatePlaylistEmptiness(playlistsLength) }
+                        />
                 </div>
             </div>
         );

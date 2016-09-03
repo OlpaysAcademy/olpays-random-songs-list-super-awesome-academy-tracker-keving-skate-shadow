@@ -1,3 +1,7 @@
 .Playlists {
     width: 100%;
 }
+
+.Playlists-playlist-hidden {
+    display: none;
+}
