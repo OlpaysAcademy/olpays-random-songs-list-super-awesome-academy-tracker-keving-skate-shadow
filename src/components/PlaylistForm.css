@@ -1,8 +1,16 @@
 .PlaylistForm {
     margin: 1rem;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .PlaylistForm-input {
-    margin-right: 1rem;
+    flex: 3;
+    margin-right: .5rem;
+}
+
+.PlaylistForm-button {
+    flex: 1;
 }

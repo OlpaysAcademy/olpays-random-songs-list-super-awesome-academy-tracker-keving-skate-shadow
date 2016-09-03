@@ -1,6 +1,6 @@
 .Button {
     background-color: #61dafb;
-    border-radius: 2rem;
+    border-radius: .5rem;
     border: 1px solid white;
     display: inline-block;
     cursor: pointer;
