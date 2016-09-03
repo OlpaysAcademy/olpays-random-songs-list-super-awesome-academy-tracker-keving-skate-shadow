@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { mergeClassNames } from '../utils/styles';
+import classNames from 'classnames';
 
 import './Input.css';
 
 const Input = props => {
-    const className = mergeClassNames(props.className, 'Input');
+    const className = classNames(props.className, 'Input');
     return <input {...props} className={className} />;
 };
 

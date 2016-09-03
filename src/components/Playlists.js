@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import FlipMove from 'react-flip-move';
+import shuffle from 'lodash/shuffle';
 
 import Playlist from './Playlist';
 
@@ -16,19 +18,31 @@ class Playlists extends Component {
             playlists: addPlaylist(this.state.playlists, title)
         });
     }
+    chooseRandomPlaylist() {
+        this.setState({
+            playlists: shuffle(this.state.playlists)
+        });
+    }
     increaseTimesPlayed(id) {
         this.setState({
             playlists: increaseTimesPlayed(this.state.playlists, id)
         });
     }
+    componentWillUpdate(nextProps, nextState) {
+        if (nextState.playlists.length !== this.state.playlists.length) {
+            this.props.onPlaylistsChanged(nextState.playlists.length);
+        }
+    }
     render() {
         return (
             <div className="Playlists">
-                {
-                    this.state.playlists.map(playlist =>
-                        <Playlist playlist={playlist} onHear={() => this.increaseTimesPlayed(playlist.id) } key={playlist.id} />
-                    )
-                }
+                <FlipMove enterAnimation="accordianVertical">
+                    {
+                        this.state.playlists.map(playlist =>
+                            <Playlist playlist={playlist} onHear={() => this.increaseTimesPlayed(playlist.id) } key={playlist.id} />
+                        )
+                    }
+                </FlipMove>
             </div>
         );
     }

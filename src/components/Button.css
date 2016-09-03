@@ -1,18 +1,27 @@
 .Button {
-    background-color: #61dafb;
     border-radius: .5rem;
-    border: 1px solid white;
     display: inline-block;
-    cursor: pointer;
-    color: black;
-    font-family: Arial;
+    border-radius: .5rem;
     font-size: 1rem;
+    font-family: Arial;
     padding: .4rem .6rem;
     text-decoration: none;
-    text-shadow: 0px 1px 0px #03a9f4;
+    background-color: #61dafb;
+    border: 1px solid white;
+    cursor: pointer;
+    color: black;
+}
+.Button:disabled {
+    cursor: default;
+    background-color: white;
+    border: 1px solid grey;
+    color: grey;
 }
 .Button:hover {
     background-color: #03a9f4;
+}
+.Button:hover:disabled {
+    background-color: white;
 }
 .Button:active {
     position: relative;

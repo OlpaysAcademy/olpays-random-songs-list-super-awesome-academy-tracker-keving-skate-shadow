@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import InputGroup from './InputGroup';
 import Button from './Button';
 import Input from './Input';
 
@@ -50,10 +51,10 @@ class PlaylistForm extends Component {
     }
     render() {
         return (
-            <div className="PlaylistForm">
-                <Input className="PlaylistForm-input" type="text" onKeyPress={(ev) => this.onEnter(ev) } value={this.state.title} onChange={ev => this.handleChange(ev) } />
-                <Button className="PlaylistForm-button" onClick={() => this.createPlaylist() }>Crear</Button>
-            </div>
+            <InputGroup className="PlaylistForm">
+                <Input type="text" onKeyPress={(ev) => this.onEnter(ev) } value={this.state.title} onChange={ev => this.handleChange(ev) } />
+                <Button onClick={() => this.createPlaylist() }>Crear</Button>
+            </InputGroup>
         );
     }
 }

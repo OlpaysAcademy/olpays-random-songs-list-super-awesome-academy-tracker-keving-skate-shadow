@@ -1,0 +1,16 @@
+.InputGroup {
+    margin: 1rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.InputGroup > input {
+    flex: 3;
+    margin-right: .5rem;
+}
+
+.InputGroup > button {
+    flex: 1;
+}

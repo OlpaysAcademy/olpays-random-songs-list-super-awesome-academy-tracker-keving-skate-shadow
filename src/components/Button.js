@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { mergeClassNames } from '../utils/styles';
+import classNames from 'classnames';
 
 import './Button.css';
 
 const Button = props => {
-    const className = mergeClassNames(props.className, 'Button');
+    const className = classNames(props.className, 'Button');
     return <button {...props} className={className}>{props.children}</button>
 }
 
