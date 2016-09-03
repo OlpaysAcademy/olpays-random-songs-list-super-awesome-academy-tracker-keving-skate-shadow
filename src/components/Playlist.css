@@ -1,0 +1,20 @@
+.Playlist {
+    margin: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Playlist-music {
+    margin-right: 5px;
+}
+
+.Playlist-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: .5rem;
+    margin-left: 5px;
+    background-color: #222;
+    color: white;
+}

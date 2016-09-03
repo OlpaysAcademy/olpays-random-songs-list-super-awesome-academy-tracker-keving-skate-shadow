@@ -6,9 +6,9 @@ This repository is only for educational purpose, is not intended to work in any 
 
 This exercise consist on an application that can:
 * Create playlists ✓
-* Add songs to the each playlist
-* Count the times the playlist has been heard
-* Choose a random playlist
-* List playlists
-* Filter random generator by played times
-* Blacklist random generator
+* Add songs to the each playlist [4]
+* Count the times the playlist has been heard ✓
+* Choose a random playlist [1]
+* List playlists ✓
+* Filter random generator by played times [2]
+* Blacklist random generator [3]

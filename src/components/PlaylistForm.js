@@ -28,16 +28,14 @@ class PlaylistForm extends Component {
     constructor() {
         super();
         this.state = {
-            playlist: {
-                title: ''
-            }
+            title: ''
         };
     }
     handleChange(event) {
-        this.setState({ playlist: { title: event.target.value } });
+        this.setState({ title: event.target.value });
     }
     createPlaylist() {
-        this.props.onSubmit(this.state.playlist);
+        this.props.onSubmit(this.state.title);
         this.clearInput();
     }
     onEnter(ev) {
@@ -47,15 +45,13 @@ class PlaylistForm extends Component {
     }
     clearInput() {
         this.setState({
-            playlist: {
-                title: ''
-            }
+            title: ''
         });
     }
     render() {
         return (
             <div className="PlaylistForm">
-                <Input className="PlaylistForm-input" type="text" onKeyPress={(ev) => this.onEnter(ev) } value={this.state.playlist.title} onChange={ev => this.handleChange(ev) } />
+                <Input className="PlaylistForm-input" type="text" onKeyPress={(ev) => this.onEnter(ev) } value={this.state.title} onChange={ev => this.handleChange(ev) } />
                 <Button className="PlaylistForm-button" onClick={() => this.createPlaylist() }>Crear</Button>
             </div>
         );
