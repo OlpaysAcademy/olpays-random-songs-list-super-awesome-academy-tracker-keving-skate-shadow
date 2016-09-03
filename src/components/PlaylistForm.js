@@ -36,8 +36,10 @@ class PlaylistForm extends Component {
         this.setState({ title: event.target.value });
     }
     createPlaylist() {
-        this.props.onSubmit(this.state.title);
-        this.clearInput();
+        if (this.state.title) {
+            this.props.onSubmit(this.state.title);
+            this.clearInput();
+        }
     }
     onEnter(ev) {
         if (ev.key === 'Enter') {
