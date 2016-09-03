@@ -1,7 +1,7 @@
 # olpays-random-songs-list-super-awesome-academy-tracker-keving-skate-shadow
 
 ```
-This repository is only for educational purpose, it is not intended to work in any real way 
+This repository is only for educational and funny purpose, it is not intended to work in any real way 
 ```
 
 This exercise consist on an application that can:
