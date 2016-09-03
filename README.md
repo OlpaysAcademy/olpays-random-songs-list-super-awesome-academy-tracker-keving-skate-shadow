@@ -19,8 +19,5 @@ This exercise consist on an application that can:
 # Work
 To start working, clone this repository, generate a branch prefixed with your name, and start an icecream factory
 
-For example:
-`git checkout -b copo-test // For keving` 
-
 # Additional Content
 * [React Video](https://www.youtube.com/watch?v=vkJ5Lc0WwVw)
