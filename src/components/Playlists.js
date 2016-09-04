@@ -11,7 +11,8 @@ class Playlists extends Component {
     constructor() {
         super();
         this.state = {
-            playlists: createPlaylists()
+            playlists: createPlaylists(),
+            timesPlayedMinimum: 0
         };
     }
     addPlaylist(title) {
@@ -21,7 +22,7 @@ class Playlists extends Component {
     }
     setMinimumTimesPlayed(timesPlayed) {
         this.setState({
-            playlists: showGreaterThanMinimumTimesPlayed(this.state.playlists, timesPlayed)
+            timesPlayedMinimum: timesPlayed
         });
     }
     chooseRandomPlaylist() {
@@ -71,7 +72,7 @@ function shufflePlaylists(playlists) {
 
 function renderPlaylist(playlist) {
     const className = classNames({
-        'Playlists-playlist-hidden': !playlist.isVisible
+        'Playlists-playlist-hidden': !isPlaylistVisible(playlist, this.state.timesPlayedMinimum)
     });
     return (
         <Playlist
@@ -102,13 +103,8 @@ function createPlaylist(title) {
     };
 }
 
-function showGreaterThanMinimumTimesPlayed(playlists, timesPlayed) {
-    return playlists.map(playlist => {
-        if (!playlist.isBlacklisted) {
-            playlist.isVisible = playlist.timesPlayed >= timesPlayed;
-        }
-        return playlist;
-    });
+function isPlaylistVisible(playlist, timesPlayed) {
+    return playlist.timesPlayed >= timesPlayed;
 }
 
 function increaseTimesPlayed(playlists, id) {
