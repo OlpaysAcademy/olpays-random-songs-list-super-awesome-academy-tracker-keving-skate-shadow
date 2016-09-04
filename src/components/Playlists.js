@@ -45,19 +45,17 @@ class Playlists extends Component {
         }
     }
     render() {
+        const whitelistedPlaylists = this.state.playlists.filter(playlist => !playlist.isBlacklisted);
+        const blacklistedPlaylists = this.state.playlists.filter(playlist => playlist.isBlacklisted);
         return (
             <div className="Playlists">
                 <FlipMove enterAnimation="accordianVertical">
                     {
-                        this.state.playlists
-                            .filter(playlist => !playlist.isBlacklisted)
-                            .map(renderPlaylist.bind(this))
+                        whitelistedPlaylists.length ? whitelistedPlaylists.map(renderPlaylist.bind(this)) : <div>No hay playlists</div>
                     }
                     <hr />
                     {
-                        this.state.playlists
-                            .filter(playlist => playlist.isBlacklisted)
-                            .map(renderPlaylist.bind(this))
+                        blacklistedPlaylists.length ? blacklistedPlaylists.map(renderPlaylist.bind(this)) : <div>No hay playlists blacklisteadas</div>
                     }
                 </FlipMove>
             </div>
