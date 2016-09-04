@@ -32,6 +32,7 @@ class App extends Component {
                 <div className="App-body">
                     <PlaylistForm onSubmit={title => this.refs.Playlists.addPlaylist(title) } />
                     <RandomChooser
+                        className='App-random'
                         isDisabled={this.state.arePlaylistsEmpty}
                         onFilter={timesPlayed => this.refs.Playlists.setMinimumTimesPlayed(timesPlayed) }
                         onSubmit={() => this.refs.Playlists.chooseRandomPlaylist() }

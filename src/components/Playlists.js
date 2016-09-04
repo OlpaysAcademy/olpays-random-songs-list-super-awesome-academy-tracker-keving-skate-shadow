@@ -26,12 +26,17 @@ class Playlists extends Component {
     }
     chooseRandomPlaylist() {
         this.setState({
-            playlists: shuffle(this.state.playlists)
+            playlists: shufflePlaylists(this.state.playlists)
         });
     }
     increaseTimesPlayed(id) {
         this.setState({
             playlists: increaseTimesPlayed(this.state.playlists, id)
+        });
+    }
+    toggleBlacklist(id) {
+        this.setState({
+            playlists: toggleBlacklist(this.state.playlists, id)
         });
     }
     componentWillUpdate(nextProps, nextState) {
@@ -44,17 +49,41 @@ class Playlists extends Component {
             <div className="Playlists">
                 <FlipMove enterAnimation="accordianVertical">
                     {
-                        this.state.playlists.map(playlist => {
-                            const className = classNames({
-                                'Playlists-playlist-hidden': !playlist.isVisible
-                            });
-                            return <Playlist className={className} playlist={playlist} onHear={() => this.increaseTimesPlayed(playlist.id) } key={playlist.id} />
-                        })
+                        this.state.playlists
+                            .filter(playlist => !playlist.isBlacklisted)
+                            .map(renderPlaylist.bind(this))
+                    }
+                    <hr />
+                    {
+                        this.state.playlists
+                            .filter(playlist => playlist.isBlacklisted)
+                            .map(renderPlaylist.bind(this))
                     }
                 </FlipMove>
             </div>
         );
     }
+}
+
+function shufflePlaylists(playlists) {
+    const blacklisted = playlists.filter(playlist => playlist.isBlacklisted);
+    const nonBlacklisted = playlists.filter(playlist => !playlist.isBlacklisted);
+    return shuffle(nonBlacklisted).concat(blacklisted);
+}
+
+function renderPlaylist(playlist) {
+    const className = classNames({
+        'Playlists-playlist-hidden': !playlist.isVisible
+    });
+    return (
+        <Playlist
+            className={className}
+            playlist={playlist}
+            onHear={() => this.increaseTimesPlayed(playlist.id) }
+            onBlacklist={() => this.toggleBlacklist(playlist.id) }
+            key={playlist.id}
+            />
+    );
 }
 
 function createPlaylists() {
@@ -70,13 +99,16 @@ function createPlaylist(title) {
         title,
         id: Math.random(),
         timesPlayed: 0,
-        isVisible: true
+        isVisible: true,
+        isBlacklisted: false
     };
 }
 
 function showGreaterThanMinimumTimesPlayed(playlists, timesPlayed) {
     return playlists.map(playlist => {
-        playlist.isVisible = playlist.timesPlayed >= timesPlayed;
+        if (!playlist.isBlacklisted) {
+            playlist.isVisible = playlist.timesPlayed >= timesPlayed;
+        }
         return playlist;
     });
 }
@@ -87,6 +119,17 @@ function increaseTimesPlayed(playlists, id) {
         id,
         playlist => {
             playlist.timesPlayed += 1
+            return playlist;
+        }
+    );
+}
+
+function toggleBlacklist(playlists, id) {
+    return updatePlaylist(
+        playlists,
+        id,
+        playlist => {
+            playlist.isBlacklisted = !playlist.isBlacklisted;
             return playlist;
         }
     );

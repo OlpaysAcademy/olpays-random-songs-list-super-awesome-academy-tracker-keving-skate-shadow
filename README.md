@@ -11,4 +11,4 @@ This exercise consists on an application that can:
 * Choose a random playlist ✓
 * List playlists ✓
 * Filter random generator by played times ✓
-* Blacklist random generator [3]
+* Blacklist random generator ✓

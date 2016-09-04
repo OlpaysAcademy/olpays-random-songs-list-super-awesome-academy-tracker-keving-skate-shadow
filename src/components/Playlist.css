@@ -9,6 +9,10 @@
     border-radius: 5px;
 }
 
+.Playlist-blacklisted {
+    background-color: dimgrey;
+}
+
 .Playlist-music {
     margin-right: 5px;
 }
@@ -21,4 +25,33 @@
     margin-left: 5px;
     background-color: white;
     color: #222;
+}
+
+.Playlist-button:hover {
+    border: 1px solid black;
+}
+
+.Playlist-button-danger {
+    background-color: dimgrey;
+    color: white;
+    border: 1px solid black;
+}
+
+.Playlist-button-danger:hover {
+    background-color: white;
+    color: dimgrey;
+}
+
+.Playlist-button-blacklisted {
+    background-color: white;
+    color: black;
+}
+
+.Playlist-button-blacklisted:hover {
+    background-color: #03a9f4;
+    color: white;
+}
+
+.Playlist-actions {
+    display: flex;
 }
