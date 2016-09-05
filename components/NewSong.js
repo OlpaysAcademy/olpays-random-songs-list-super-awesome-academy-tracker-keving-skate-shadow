@@ -27,8 +27,10 @@ class NewSong extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <input ref='artist' type='text' onChange={this.onChange.bind(this, 'artist')} value={this.state.artist}/>
-                <input ref='name' type='text' onChange={this.onChange.bind(this, 'name')} value={this.state.name}/>
+                <label>Artist</label>
+                <input name="artist" ref='artist' type='text' onChange={this.onChange.bind(this, 'artist')} value={this.state.artist}/>
+                <label>Name</label>
+                <input name="name" ref='name' type='text' onChange={this.onChange.bind(this, 'name')} value={this.state.name}/>
                 <input type='submit' value='Add'/>
             </form>
         );

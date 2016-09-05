@@ -8,6 +8,7 @@ class App extends React.Component {
         this.state = { playlists: '', songs: '' };
         this.addPlaylistHandler = this.addPlaylistHandler.bind(this);
         this.addSongHandler = this.addSongHandler.bind(this);
+        this.fetchSongs = this.fetchSongs.bind(this);
     }
     componentWillMount(){
         const self = this;
@@ -34,6 +35,13 @@ class App extends React.Component {
         this.setState({
             playlists: allPlaylists
         });
+    }
+    fetchSongs(playlist) {
+        const self = this;
+        return playlist.songs.map(fetchSong);
+        function fetchSong(songId) {
+            return _.filter(self.state.songs, s => s.id === songId);
+        }
     }
     addSongHandler(newSong) {
         const self = this;
@@ -62,7 +70,7 @@ class App extends React.Component {
     render() {
         var createPlaylistItem = item => {
             return (
-                <Playlist onSongSubmit={this.addSongHandler} playlist={item} songs={this.state.songs}/>
+                <Playlist onSongSubmit={this.addSongHandler} playlist={item} songs={this.fetchSongs(item)}/>
             )
         }
         return (

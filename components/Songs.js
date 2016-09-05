@@ -7,8 +7,6 @@ class Songs extends React.Component {
         super();
     }
     render(){
-        console.log('rendereando songs');
-        console.log(this.props.songs);
         const createPlaylistSongItem = item => <li key={item[0].id}>{item[0].name} - {item[0].artist}</li>;
         return (
             <div>
