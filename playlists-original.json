@@ -1,0 +1,6 @@
+[
+    { "id": 1345, "name": "Pelados", "count": 0, "songs": [{ "id": 64565, "name": "Song 1", "artist": "Pela 1"}, { "id": 134632, "name": "Song 2", "artist": "Pela 2"}]},
+    { "id": 234532, "name": "Falsete", "count": 0, "songs": [{ "id": 45636, "name": "Song 1", "artist": "Falsete 1"}, { "id": 23463, "name": "Song 2", "artist": "Falsete 2"}]},
+    { "id": 353324, "name": "Colorados", "count": 0, "songs": [{ "id": 34637, "name": "Song 1", "artist": "Colorados 1"}, { "id": 32253, "name": "Song 2", "artist": "Colorados 2"}]},
+    { "id": 42222, "name": "Comida", "count": 0, "songs": [{ "id": 83463, "name": "Song 1", "artist": "Comida 1"}, { "id": 43462, "name": "Song 2", "artist": "Comida 2"}]}
+]

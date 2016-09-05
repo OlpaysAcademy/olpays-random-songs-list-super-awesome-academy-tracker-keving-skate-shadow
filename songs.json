@@ -1,0 +1,12 @@
+[
+    { "id": 1, "name": "Scatman's World", "artist": "Scatman" },
+    { "id": 2, "name": "2 become 1", "artist": "Spice Girls" },
+    { "id": 3, "name": "Ya me voy", "artist": "Wisin & Yandel" },
+    { "id": 4, "name": "Ese hombre", "artist": "Pimpinela" },
+    { "id": 5, "name": "Dookie", "artist": "Green Day" },
+    { "id": 6, "name": "Tema del insomnio", "artist": "Airbag" },
+    { "id": 7, "name": "El otro tema de Airbag", "artist": "Airbag" },
+    { "id": 8, "name": "Pachuuu", "artist": "Airbag" },
+    { "id": 9, "name": "Baile de Favela", "artist": "MC Joao" },
+    { "id": 10, "name": "Otro Tema", "artist": "Santos" }
+]
