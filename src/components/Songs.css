@@ -1,0 +1,15 @@
+.Songs {
+    display: flex;
+    flex-direction: column;
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+
+.Songs-Input {
+    flex: 1;
+}
+
+.Song {
+    text-align: left;
+    margin: .5rem;
+}

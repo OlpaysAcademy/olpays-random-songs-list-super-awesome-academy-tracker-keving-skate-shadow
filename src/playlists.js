@@ -20,7 +20,8 @@ function createPlaylist(title) {
         id: Math.random(),
         timesPlayed: 0,
         isVisible: true,
-        isBlacklisted: false
+        isBlacklisted: false,
+        songs: []
     };
 }
 
@@ -52,4 +53,15 @@ export function toggleBlacklist(playlists, id) {
 
 function updatePlaylist(playlists, id, updater) {
     return playlists.map(playlist => playlist.id === id ? updater(playlist) : playlist);
+}
+
+export function addSong(playlists, id, name) {
+    return updatePlaylist(
+        playlists,
+        id,
+        playlist => {
+            playlist.songs.push(name);
+            return playlist;
+        }
+    );
 }

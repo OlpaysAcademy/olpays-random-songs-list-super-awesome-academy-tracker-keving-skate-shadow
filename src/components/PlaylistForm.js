@@ -54,7 +54,7 @@ class PlaylistForm extends Component {
     render() {
         return (
             <InputGroup className="PlaylistForm">
-                <Input type="text" onKeyPress={(ev) => this.onEnter(ev) } value={this.state.title} onChange={ev => this.handleChange(ev) } />
+                <Input type="text" onKeyPress={(ev) => this.onEnter(ev) } value={this.state.title} onChange={ev => this.handleChange(ev) } placeholder="Crear nueva playlist" />
                 <Button onClick={() => this.createPlaylist() }>Crear</Button>
             </InputGroup>
         );

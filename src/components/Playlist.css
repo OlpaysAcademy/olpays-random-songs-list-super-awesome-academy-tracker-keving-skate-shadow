@@ -9,6 +9,19 @@
     border-radius: 5px;
 }
 
+.Playlist-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.Playlist-Songs-areVisible-false{
+    display: none;
+}
+
+.Playlist-Songs-areVisible-true{
+    display: visible;
+}
+
 .Playlist-blacklisted {
     background-color: dimgrey;
 }
@@ -22,9 +35,10 @@
     align-items: center;
     justify-content: center;
     border-radius: .5rem;
-    margin-left: 5px;
     background-color: white;
     color: #222;
+    margin-left: 1px;
+    margin-right: 1px;
 }
 
 .Playlist-button:hover {
@@ -54,4 +68,12 @@
 
 .Playlist-actions {
     display: flex;
+}
+
+.Playlist-songInput-button-isVisible-true {
+    display: visible;
+}
+
+.Playlist-songInput-button-isVisible-false {
+    display: hidden;
 }

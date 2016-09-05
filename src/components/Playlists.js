@@ -3,7 +3,15 @@ import FlipMove from 'react-flip-move';
 import classNames from 'classnames';
 
 import Playlist from './Playlist';
-import { createPlaylists, addPlaylist, shufflePlaylists, increaseTimesPlayed, toggleBlacklist, isPlaylistVisible } from '../playlists';
+import {
+    createPlaylists,
+    addPlaylist,
+    shufflePlaylists,
+    increaseTimesPlayed,
+    toggleBlacklist,
+    isPlaylistVisible,
+    addSong
+} from '../playlists';
 
 import './Playlists.css';
 
@@ -40,6 +48,11 @@ class Playlists extends Component {
             playlists: toggleBlacklist(this.state.playlists, id)
         });
     }
+    addSong(id, name) {
+        this.setState({
+            playlists: addSong(this.state.playlists, id, name)
+        });
+    }
     componentWillUpdate(nextProps, nextState) {
         if (nextState.playlists.length !== this.state.playlists.length) {
             this.props.onPlaylistsChanged(nextState.playlists.length);
@@ -74,6 +87,7 @@ function renderPlaylist(playlist) {
             playlist={playlist}
             onHear={() => this.increaseTimesPlayed(playlist.id) }
             onBlacklist={() => this.toggleBlacklist(playlist.id) }
+            onAddSong={name => this.addSong(playlist.id, name) }
             key={playlist.id}
             />
     );
