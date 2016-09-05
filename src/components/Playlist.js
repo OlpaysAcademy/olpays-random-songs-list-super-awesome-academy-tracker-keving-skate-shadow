@@ -22,29 +22,29 @@ class Playlist extends Component {
     render() {
         const { playlist, onHear, onBlacklist } = this.props;
         const className = classNames(this.props.className, 'Playlist', {
-            'Playlist-blacklisted': playlist.isBlacklisted
+            'Playlist--blacklisted': playlist.isBlacklisted
         });
         const blacklistButtonClassName = classNames({
-            'Playlist-button': true,
-            'Playlist-button-danger': true,
-            'Playlist-button-blacklisted': playlist.isBlacklisted
+            'Playlist__button': true,
+            'Playlist__button--danger': true,
+            'Playlist__button--blacklisted': playlist.isBlacklisted
         });
         const songsClassName = classNames({
-            [`Playlist-Songs-areVisible-${this.state.areSongsVisible}`]: true
+            [`Playlist__Songs--visible-${this.state.areSongsVisible}`]: true
         });
         return (
-            <div className='Playlist-container'>
+            <div className='Playlist__container'>
                 <div className={className}>
                     <span>{playlist.title}({playlist.timesPlayed}) </span>
-                    <div className="Playlist-actions">
-                        <Button disabled={playlist.isBlacklisted} className="Playlist-button" onClick={() => onHear() }>
-                            <Music className="Playlist-music" fill="#222" width="1em" height="1em" />
+                    <div className="Playlist__actions">
+                        <Button disabled={playlist.isBlacklisted} className="Playlist__button" onClick={() => onHear() }>
+                            <Music className="Playlist__music" fill="#222" width="1em" height="1em" />
                             Escuchar
                         </Button>
                         <Button className={blacklistButtonClassName} onClick={() => onBlacklist() }>
                             {playlist.isBlacklisted ? 'Whitelistear' : 'Blacklistear'}
                         </Button>
-                        <Button className="Playlist-button" onClick={() => this.toggleSongInput() }>
+                        <Button className="Playlist__button" onClick={() => this.toggleSongInput() }>
                             {this.state.areSongsVisible ? '-' : '+'}
                         </Button>
                     </div>

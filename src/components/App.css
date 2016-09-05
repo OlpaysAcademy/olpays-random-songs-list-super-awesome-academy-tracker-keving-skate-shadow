@@ -1,6 +1,7 @@
 /*
     CSS naming is based on kind of a BEM style convention
     http://getbem.com/introduction/
+    http://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/
 */
 .App {
     text-align: center;
@@ -12,12 +13,12 @@
     flex-direction: column;
 }
 
-.App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.App__logo {
+    animation: App__logo-spin infinite 20s linear;
     height: 60px;
 }
 
-.App-header {
+.App__header {
     flex: 1;
     width: 100%;
     background-color: #222;
@@ -25,7 +26,7 @@
     color: white;
 }
 
-.App-body {
+.App__body {
     flex: 9;
     width: 100%;
     max-width: 640px;
@@ -34,11 +35,11 @@
     flex-direction: column;
 }
 
-.App-random {
+.App__random {
     margin-top: .5rem;
 }
 
-@keyframes App-logo-spin {
+@keyframes App__logo-spin {
     from {
       transform: rotate(0deg);
     }

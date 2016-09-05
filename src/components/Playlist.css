@@ -9,28 +9,28 @@
     border-radius: 5px;
 }
 
-.Playlist-container {
+.Playlist__container {
     display: flex;
     flex-direction: column;
 }
 
-.Playlist-Songs-areVisible-false{
+.Playlist__Songs--visible-false{
     display: none;
 }
 
-.Playlist-Songs-areVisible-true{
+.Playlist__Songs--visible-true{
     display: visible;
 }
 
-.Playlist-blacklisted {
+.Playlist--blacklisted {
     background-color: dimgrey;
 }
 
-.Playlist-music {
+.Playlist__music {
     margin-right: 5px;
 }
 
-.Playlist-button {
+.Playlist__button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,39 +41,31 @@
     margin-right: 1px;
 }
 
-.Playlist-button:hover {
+.Playlist__button:hover {
     border: 1px solid black;
 }
 
-.Playlist-button-danger {
+.Playlist__button--danger {
     background-color: dimgrey;
     color: white;
     border: 1px solid black;
 }
 
-.Playlist-button-danger:hover {
+.Playlist__button--danger:hover {
     background-color: white;
     color: dimgrey;
 }
 
-.Playlist-button-blacklisted {
+.Playlist__button--blacklisted {
     background-color: white;
     color: black;
 }
 
-.Playlist-button-blacklisted:hover {
+.Playlist__button--blacklisted:hover {
     background-color: #03a9f4;
     color: white;
 }
 
-.Playlist-actions {
+.Playlist__actions {
     display: flex;
-}
-
-.Playlist-songInput-button-isVisible-true {
-    display: visible;
-}
-
-.Playlist-songInput-button-isVisible-false {
-    display: hidden;
 }

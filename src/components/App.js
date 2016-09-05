@@ -25,14 +25,14 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <div className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
+                <div className="App__header">
+                    <img src={logo} className="App__logo" alt="logo" />
                     <h2 className="App-title">Playlists</h2>
                 </div>
-                <div className="App-body">
+                <div className="App__body">
                     <PlaylistForm onSubmit={title => this.refs.Playlists.addPlaylist(title) } />
                     <RandomChooser
-                        className='App-random'
+                        className='App__random'
                         isDisabled={this.state.arePlaylistsEmpty}
                         onFilter={timesPlayed => this.refs.Playlists.setMinimumTimesPlayed(timesPlayed) }
                         onSubmit={() => this.refs.Playlists.chooseRandomPlaylist() }

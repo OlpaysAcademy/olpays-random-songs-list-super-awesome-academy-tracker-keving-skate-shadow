@@ -19,7 +19,7 @@ class RandomChooser extends Component {
         return (
             <InputGroup className={className}>
                 <Input onChange={ev => this.handleChange(ev) } placeholder="Filtrar por minimo de escuchas" className="RandomChooser-input" type="number"/>
-                <Button disabled={this.props.isDisabled} className="RandomChooser-button" onClick={() => this.chooseRandomPlaylist() }>Randomear!</Button>
+                <Button disabled={this.props.isDisabled} className="RandomChooser__button" onClick={() => this.chooseRandomPlaylist() }>Randomear!</Button>
             </InputGroup>
         );
     }

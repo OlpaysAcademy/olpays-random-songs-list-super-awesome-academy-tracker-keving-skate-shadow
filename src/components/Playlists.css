@@ -2,6 +2,6 @@
     width: 100%;
 }
 
-.Playlists-playlist-hidden {
+.Playlists__playlist--hidden {
     display: none;
 }

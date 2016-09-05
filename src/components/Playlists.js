@@ -79,7 +79,7 @@ class Playlists extends Component {
 
 function renderPlaylist(playlist) {
     const className = classNames({
-        'Playlists-playlist-hidden': !isPlaylistVisible(playlist, this.state.timesPlayedMinimum)
+        'Playlists__playlist--hidden': !isPlaylistVisible(playlist, this.state.timesPlayedMinimum)
     });
     return (
         <Playlist
