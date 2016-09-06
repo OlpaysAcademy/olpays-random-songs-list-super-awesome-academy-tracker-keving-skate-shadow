@@ -12,7 +12,7 @@ class NewSong extends React.Component {
         const newSong = {
             artist: this.state.artist,
             name: this.state.name,
-            playlistId: this.props.playlistId
+            playlistId: this.props.playlist.id
         }
         this.props.onSongSubmit(newSong);
         this.setState({ artist: '', name: '' });
