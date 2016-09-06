@@ -2,21 +2,25 @@ import React from 'react';
 import NewPlaylist from './components/NewPlaylist';
 import Playlist from './components/Playlist';
 import Songs from './components/Songs';
+import Random from './components/Random';
 
 const navigationLeft = {
     float: 'left',
-    width: 250,
+    width: 300,
     height: '100%'
 }
 
 class App extends React.Component {
     constructor() {
         super();
-        this.state = { songs: '', playlists: '', showSongs: false, playlistSongs: '', playlistId: '' };
+        this.state = { songs: '', playlists: '', showSongs: false, playlistSongs: '', playlistId: '', randomPlaylist: '' };
         this.addPlaylistHandler = this.addPlaylistHandler.bind(this);
         this.addSongHandler = this.addSongHandler.bind(this);
         this.fetchPlaylistSongs = this.fetchPlaylistSongs.bind(this);
         this.showSongs = this.showSongs.bind(this);
+        this.onIncrementCounter = this.onIncrementCounter.bind(this);
+        this.onRandomClick = this.onRandomClick.bind(this);
+        this.onBlacklistChange = this.onBlacklistChange.bind(this);
     }
     componentWillMount(){
         const self = this;
@@ -38,7 +42,8 @@ class App extends React.Component {
             id: Date.now(),
             name: newPlaylist,
             count: 0,
-            songs: []
+            songs: [],
+            blacklisted: false
         }
         const allPlaylists = this.state.playlists.concat([newPlaylistObj]);
         this.setState({
@@ -92,22 +97,68 @@ class App extends React.Component {
             return _.filter(self.state.songs, s => s.id === songId)[0];
         }
     }
+    onIncrementCounter(playlistId) {
+        const updatedPlaylists = this.state.playlists.map(incrementCounter);
+        this.setState({ playlists: updatedPlaylists });
+        function incrementCounter(playlist) {
+            if (playlistId === playlist.id) {
+                playlist.count = playlist.count + 1;
+            }
+            return playlist;
+        }
+    }
+    onRandomClick(playlistId) {
+        const self = this;
+        if (isAllBlacklisted()) {
+            this.setState({ randomPlaylist: 'All playlists are blacklisted!' });
+            return;
+        }
+        const options = this.state.playlists.map(p => p.id);
+        const selectedPlaylist = getRandomPlaylist();
+        this.setState({ randomPlaylist: selectedPlaylist.name });
+
+        function getRandomPlaylist() {
+            const selectedOption = options[Math.floor(Math.random()*options.length)];
+            const selectedPlaylist = _.find(self.state.playlists, p => p.id === selectedOption);
+            return selectedPlaylist.blacklisted ? getRandomPlaylist() : selectedPlaylist;
+        }
+
+        function isAllBlacklisted() {
+            return !_.find(self.state.playlists, p => p.blacklisted === false)
+        }
+        
+    }
+    onBlacklistChange(playlistId) {
+        this.setState({ playlists: this.state.playlists.map(updatePlaylist)});
+        function updatePlaylist(playlist) {
+            if ( playlist.id === playlistId ) {
+                playlist.blacklisted = !playlist.blacklisted;
+            }
+            return playlist;
+        }
+    }
     render() {
         var createPlaylistItem = item => {
             return (
-                <Playlist onShowSongs={this.showSongs} playlist={item}/>
+                <Playlist
+                    onShowSongs={this.showSongs}
+                    playlist={item}
+                    onIncrementCounter={this.onIncrementCounter}
+                    onBlacklistChange={this.onBlacklistChange} 
+                />
             )
         }
         return (
             <div>
                 <div style={navigationLeft}>
                     <h1>Playlist Crapper</h1>
+                    <NewPlaylist onFormSubmit={this.addPlaylistHandler} />
+                    <Random onRandomClick={this.onRandomClick} randomPlaylist={this.state.randomPlaylist} />
                     <div>
                         { this.state.playlists
                         ? <ul>{this.state.playlists.map(createPlaylistItem)}</ul>
                         : '' }
                     </div>
-                    <NewPlaylist onFormSubmit={this.addPlaylistHandler} />
                 </div>
                 <div>
                     <div>{ this.state.showSongs ? <Songs onSongSubmit={this.addSongHandler} playlist={this.state.selectedPlaylist} songs={this.state.playlistSongs}/> : ''}</div>

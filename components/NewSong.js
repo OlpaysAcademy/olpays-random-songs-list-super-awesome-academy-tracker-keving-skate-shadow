@@ -29,7 +29,7 @@ class NewSong extends React.Component {
             <form onSubmit={this.handleSubmit}>
                 <label>Artist</label>
                 <input name="artist" ref='artist' type='text' onChange={this.onChange.bind(this, 'artist')} value={this.state.artist}/>
-                <label>Name</label>
+                <label>Song</label>
                 <input name="name" ref='name' type='text' onChange={this.onChange.bind(this, 'name')} value={this.state.name}/>
                 <input type='submit' value='Add'/>
             </form>

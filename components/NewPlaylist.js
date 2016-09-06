@@ -22,7 +22,7 @@ class NewPlaylist extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <label>Playlist</label>
+                <label>New Playlist</label>
                 <input ref='newPlaylist' type='text' onChange={this.onChange} value={this.state.newPlaylist}/>
                 <input type='submit' value='Add'/>
             </form>
