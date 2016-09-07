@@ -1,5 +1,9 @@
 import React from 'react';
 
+const inputLabel = {
+    marginRight: 5
+};
+
 class NewPlaylist extends React.Component {
     constructor() {
         super();
@@ -22,9 +26,9 @@ class NewPlaylist extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <label>New Playlist</label>
+                <label style={inputLabel}>New Playlist</label>
                 <input ref='newPlaylist' type='text' onChange={this.onChange} value={this.state.newPlaylist}/>
-                <input type='submit' value='Add'/>
+                <button  className="btn btn-primary btn-sm m-l-sm" type='submit'>Add</button>
             </form>
         );
     }

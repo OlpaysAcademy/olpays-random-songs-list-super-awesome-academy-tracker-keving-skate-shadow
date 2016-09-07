@@ -3,17 +3,14 @@ import NewPlaylist from './components/NewPlaylist';
 import Playlist from './components/Playlist';
 import Songs from './components/Songs';
 import Random from './components/Random';
-
-const navigationLeft = {
-    float: 'left',
-    width: 300,
-    height: '100%'
-}
+import Header from './components/Header';
+import NoSongMsg from './components/NoSongMsg';
+import { container, navigation, playlistWrapper, songInfo } from './appcss';
 
 class App extends React.Component {
     constructor() {
         super();
-        this.state = { songs: '', playlists: '', showSongs: false, playlistSongs: '', playlistId: '', randomPlaylist: '' };
+        this.state = { songs: '', playlists: '', showSongs: false, playlistSongs: '', playlistId: '', randomPlaylist: '', counterFilter: '' };
         this.addPlaylistHandler = this.addPlaylistHandler.bind(this);
         this.addSongHandler = this.addSongHandler.bind(this);
         this.fetchPlaylistSongs = this.fetchPlaylistSongs.bind(this);
@@ -23,14 +20,13 @@ class App extends React.Component {
         this.onBlacklistChange = this.onBlacklistChange.bind(this);
     }
     componentWillMount(){
-        const self = this;
-        function fetchData(type) {
+        const fetchData = type => {
             fetch(`./${type}.json`)
                 .then(res => res.json())
                 .then(data => {
                     const change = {};
                     change[type] = data;
-                    self.setState(change);
+                    this.setState(change);
                 });
         }
 
@@ -51,11 +47,8 @@ class App extends React.Component {
         });
     }
     fetchPlaylistSongs(playlist) {
-        const self = this;
+        const getSongs = songId => _.filter(this.state.songs, s => s.id === songId);
         return playlist.songs.map(getSongs);
-        function getSongs(songId) {
-            return _.filter(self.state.songs, s => s.id === songId);
-        }
     }
     addSongHandler(newSong) {
         const self = this;
@@ -72,7 +65,6 @@ class App extends React.Component {
 
         // Refactor because I already have the playlist id
         function updatePlaylist() {
-            // const playlistToUpdate = _.find(self.state.playlists, p => p.id === newSong.playlistId);
             const updatedPlaylists = self.state.playlists.map(pushSong);
             self.setState({ playlists: updatedPlaylists });
             function fetchPlaylistSongs(songId) {
@@ -107,26 +99,22 @@ class App extends React.Component {
             return playlist;
         }
     }
-    onRandomClick(playlistId) {
-        const self = this;
+    onRandomClick(counterFilter) {
+        const isAllBlacklisted = () => !_.find(this.state.playlists, p => p.blacklisted === false);
         if (isAllBlacklisted()) {
             this.setState({ randomPlaylist: 'All playlists are blacklisted!' });
             return;
+        }
+        const isValidPlaylist = selectedPlaylist => !selectedPlaylist.blacklisted && selectedPlaylist.count < counterFilter;
+        const getRandomPlaylist = () => {
+            const selectedOption = options[Math.floor(Math.random()*options.length)];
+            const selectedPlaylist = _.find(this.state.playlists, p => p.id === selectedOption);
+            return isValidPlaylist(selectedPlaylist) ? selectedPlaylist : getRandomPlaylist();
         }
         const options = this.state.playlists.map(p => p.id);
         const selectedPlaylist = getRandomPlaylist();
         this.setState({ randomPlaylist: selectedPlaylist.name });
 
-        function getRandomPlaylist() {
-            const selectedOption = options[Math.floor(Math.random()*options.length)];
-            const selectedPlaylist = _.find(self.state.playlists, p => p.id === selectedOption);
-            return selectedPlaylist.blacklisted ? getRandomPlaylist() : selectedPlaylist;
-        }
-
-        function isAllBlacklisted() {
-            return !_.find(self.state.playlists, p => p.blacklisted === false)
-        }
-        
     }
     onBlacklistChange(playlistId) {
         this.setState({ playlists: this.state.playlists.map(updatePlaylist)});
@@ -150,18 +138,22 @@ class App extends React.Component {
         }
         return (
             <div>
-                <div style={navigationLeft}>
-                    <h1>Playlist Crapper</h1>
-                    <NewPlaylist onFormSubmit={this.addPlaylistHandler} />
-                    <Random onRandomClick={this.onRandomClick} randomPlaylist={this.state.randomPlaylist} />
-                    <div>
-                        { this.state.playlists
-                        ? <ul>{this.state.playlists.map(createPlaylistItem)}</ul>
-                        : '' }
+                <Header />
+                <div className="row">
+                    <div className="col-xs-12" style={container}>
+                        <div className="col-xs-3 text-left" style={navigation}>
+                            <NewPlaylist onFormSubmit={this.addPlaylistHandler} />
+                            <div>
+                                { this.state.playlists
+                                ? <div style={playlistWrapper}>{this.state.playlists.map(createPlaylistItem)}</div>
+                                : '' }
+                            </div>
+                            <Random onRandomClick={this.onRandomClick} randomPlaylist={this.state.randomPlaylist} />
+                        </div>
+                        <div className="col-xs-9" style={songInfo}>
+                            <div>{ this.state.showSongs ? <Songs onSongSubmit={this.addSongHandler} playlist={this.state.selectedPlaylist} songs={this.state.playlistSongs}/> : <NoSongMsg />}</div>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <div>{ this.state.showSongs ? <Songs onSongSubmit={this.addSongHandler} playlist={this.state.selectedPlaylist} songs={this.state.playlistSongs}/> : ''}</div>
                 </div>
             </div>
         )

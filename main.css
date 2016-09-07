@@ -1,0 +1,24 @@
+html, body, col-xs-3, col-xs-6
+{
+    height: 100%;
+}
+
+.iconItem {
+    margin: 5px;
+}
+
+.m-l-sm {
+    margin-left: 5px;
+}
+
+.m-r-sm {
+    margin-right: 5px;
+}
+
+.m-t-sm {
+    margin-top: 5px;
+}
+
+.m-b-sm {
+    margin-bottom: 5px;
+}

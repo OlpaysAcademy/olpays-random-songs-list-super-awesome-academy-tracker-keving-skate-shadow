@@ -1,5 +1,9 @@
 import React from 'react';
 
+const addSongForm = {
+    marginTop: 25
+};
+
 class NewSong extends React.Component {
     constructor() {
         super();
@@ -26,12 +30,12 @@ class NewSong extends React.Component {
     }
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label>Artist</label>
+            <form style={addSongForm} onSubmit={this.handleSubmit}>
+                <label className="m-r-sm">Artist</label>
                 <input name="artist" ref='artist' type='text' onChange={this.onChange.bind(this, 'artist')} value={this.state.artist}/>
-                <label>Song</label>
+                <label className="m-r-sm">Song</label>
                 <input name="name" ref='name' type='text' onChange={this.onChange.bind(this, 'name')} value={this.state.name}/>
-                <input type='submit' value='Add'/>
+                <button type='submit' className="btn btn-primary btn-xs m-l-sm">Add</button>
             </form>
         );
     }

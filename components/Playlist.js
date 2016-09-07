@@ -1,6 +1,15 @@
 import React from 'react';
 import Songs from './Songs';
 
+const playlistItem = {
+    height: 40
+};
+
+const playlistName = {
+    cursor: 'pointer',
+    color: '#89949B'
+};
+
 class Playlist extends React.Component {
     constructor() {
         super();
@@ -20,11 +29,15 @@ class Playlist extends React.Component {
     render() {
         return (
             <div>
-                <li key={this.props.playlist.id}>
-                    <a onClick={this.showSongs}>{this.props.playlist.name} - Listens: {this.props.playlist.count}</a>
-                    <button onClick={this.incrementCounter}>+1</button>
-                    <button onClick={this.blacklist}>{ this.props.playlist.blacklisted ? 'Unblacklist' : 'Blacklist' }</button>
-                </li>
+                <div className="col-xs-12" style={playlistItem}>
+                    <span className="col-xs-7 text-left">
+                        <span className="glyphicon glyphicon-music iconItem"></span>
+                        <a style={playlistName} onClick={this.showSongs}><strong>{this.props.playlist.name}</strong></a>
+                    </span>
+                    <span>{this.props.playlist.count}</span>
+                    <button className='btn btn-primary btn-xs m-l-sm m-r-sm' onClick={this.incrementCounter}>+1</button>
+                    <button className='btn btn-default btn-xs' onClick={this.blacklist}>{ this.props.playlist.blacklisted ? 'Unblacklist' : 'Blacklist' }</button>
+                </div>
             </div>
         );
     }
