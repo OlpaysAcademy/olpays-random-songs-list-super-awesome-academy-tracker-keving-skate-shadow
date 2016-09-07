@@ -26,3 +26,4 @@ For example:
 * [Thinking in React](https://facebook.github.io/react/docs/thinking-in-react.html)
 * [React Chrome Dev Tools](https://facebook.github.io/react/blog/2014/01/02/react-chrome-developer-tools.html)
 * [Create React App](https://github.com/facebookincubator/create-react-app) - Create a React App (by fartbook)
+* [Component Communication](http://andrewhfarmer.com/component-communication/)
