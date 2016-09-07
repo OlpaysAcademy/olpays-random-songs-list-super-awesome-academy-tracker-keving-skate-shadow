@@ -82,11 +82,20 @@ class PlaylistList extends Component {
       this.updatePlaylist(current, { selected: false });
     }
     const listenedFilter = parseInt(this.state.listenedFilter, 10);
-    const ids = R.pipe(
-      R.reject(R.propEq('blacklisted', true)),
-      R.reject(R.propSatisfies(R.lt(listenedFilter), 'listened')),
-      R.map(R.prop('id'))
-    )(this.state.playlists);
+
+    const listenedMoreThan = listenedFilter => R.propSatisfies(R.lt(listenedFilter), 'listened')
+    
+    const rejectBlacklisted = R.reject(R.propEq('blacklisted', true));
+    const rejectListenedMoreThan = R.reject(listenedMoreThan(listenedFilter));
+
+    const getIds = R.map(R.prop('id'));
+    const getAllowedIds = R.pipe(
+      rejectBlacklisted,
+      rejectListenedMoreThan,
+      getIds
+    );
+
+    const ids = getAllowedIds(this.state.playlists);
 
     const randomPlaylistIndex = _.random(0, ids.length - 1);
     const currentRandom = this.state.playlists.find(R.propEq('id', ids[randomPlaylistIndex]));
