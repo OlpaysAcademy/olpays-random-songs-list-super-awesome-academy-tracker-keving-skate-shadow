@@ -1,5 +1,7 @@
 # olpays-random-songs-list-super-awesome-academy-tracker-keving-skate-shadow
 
+[Check it out](https://ns-fvcrqmlrop.now.sh/)
+
 ```
 This repository is only for educational purpose, is not intended to work in any real way 
 ```
