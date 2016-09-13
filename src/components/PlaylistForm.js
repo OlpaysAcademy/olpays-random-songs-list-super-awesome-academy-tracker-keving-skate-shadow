@@ -22,7 +22,8 @@ import './PlaylistForm.css';
 
 // Olpays convention
 // We are going to use ES6 classes
-// We are going to use arrow functions for function binding.
+// We are going to bind functions in constructor
+// We are NOT going to use arrow functions for function binding because they create a new function in every render.
 // We think they let you clearly state the parameter that a function receives
 // e.g. onChange={ev => this.handleChange(ev)}
 class PlaylistForm extends Component {
