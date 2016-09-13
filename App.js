@@ -105,11 +105,13 @@ class App extends React.Component {
             this.setState({ randomPlaylist: 'All playlists are blacklisted!' });
             return;
         }
-        const isValidPlaylist = selectedPlaylist => !selectedPlaylist.blacklisted && selectedPlaylist.count < counterFilter;
+        const isValidPlaylist = p => {
+            return counterFilter ? !p.blacklisted && p.count < counterFilter : !p.blacklisted;
+        }
         const getRandomPlaylist = () => {
             const selectedOption = options[Math.floor(Math.random()*options.length)];
-            const selectedPlaylist = _.find(this.state.playlists, p => p.id === selectedOption);
-            return isValidPlaylist(selectedPlaylist) ? selectedPlaylist : getRandomPlaylist();
+            const playlist = _.find(this.state.playlists, p => p.id === selectedOption);
+            return isValidPlaylist(playlist) ? playlist : getRandomPlaylist();
         }
         const options = this.state.playlists.map(p => p.id);
         const selectedPlaylist = getRandomPlaylist();
